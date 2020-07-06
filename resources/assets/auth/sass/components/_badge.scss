@@ -1,0 +1,20 @@
+.badge {
+  text-align: center;
+  border-radius: 30px;
+  font-size: 12px;
+  padding: 4px 12px;
+  color: #fff;
+  display: inline-block;
+
+  &.Silver {
+    background-color: #a0afc0;
+  }
+
+  &.Gold {
+    background-color: #d6b504;
+  }
+
+  &.Premium {
+    background-color: #b8deff;
+  }
+}
