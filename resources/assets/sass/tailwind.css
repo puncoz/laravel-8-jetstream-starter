@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.auth-layout .has-error label {
+    @apply text-danger-600;
+}
+
+.auth-layout .has-error label span {
+    @apply text-danger-600;
+}
+
+.auth-layout .has-error input {
+    @apply border-danger-600 text-danger-600;
+}
+
+.auth-layout .has-error input:focus {
+    @apply border-danger-600
+}

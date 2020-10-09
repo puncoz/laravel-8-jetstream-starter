@@ -2,11 +2,15 @@
 
 namespace App\StartUp\Providers;
 
+use App\Core\Actions\Auth\AttemptToAuthenticate;
 use App\Core\Actions\Auth\CreateNewUser;
+use App\Core\Actions\Auth\LogoutResponse;
 use App\Core\Actions\Auth\ResetUserPassword;
 use App\Core\Actions\Auth\UpdateUserPassword;
 use App\Core\Actions\Auth\UpdateUserProfileInformation;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use Laravel\Fortify\Contracts\LogoutResponse as LogoutResponseContract;
 use Laravel\Fortify\Fortify;
 
 /**
@@ -22,7 +26,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(RedirectIfTwoFactorAuthenticatable::class, AttemptToAuthenticate::class);
+        $this->app->bind(LogoutResponseContract::class, LogoutResponse::class);
     }
 
     /**
