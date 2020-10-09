@@ -2,10 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Data\Models\Entities\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+/**
+ * Class UserFactory
+ * @package Database\Factories
+ */
 class UserFactory extends Factory
 {
     /**
@@ -23,11 +27,31 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'name'               => $this->faker->name,
+            'email'              => $this->faker->unique()->safeEmail,
+            'username'           => $this->faker->unique()->userName,
+            'email_verified_at'  => $this->faker->boolean ? now() : null,
+            'password'           => 'secret',
+            'remember_token'     => $this->faker->boolean ? Str::random(10) : null,
+            'profile_photo_path' => null,
         ];
+    }
+
+    /**
+     * @return Factory
+     */
+    public function admin()
+    {
+        return $this->state(
+            function (array $attributes) {
+                return [
+                    'name'              => 'Administrator',
+                    'username'          => 'admin',
+                    'email'             => 'admin@admin.com',
+                    'email_verified_at' => now(),
+                    'password'          => 'password',
+                ];
+            }
+        );
     }
 }

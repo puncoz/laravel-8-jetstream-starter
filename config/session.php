@@ -1,5 +1,6 @@
 <?php
 
+use App\Constants\DBTables;
 use Illuminate\Support\Str;
 
 return [
@@ -18,7 +19,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => env('SESSION_DRIVER', 'database'),
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +86,7 @@ return [
     |
     */
 
-    'table' => 'sessions',
+    'table' => DBTables::SYS_SESSIONS,
 
     /*
     |--------------------------------------------------------------------------
