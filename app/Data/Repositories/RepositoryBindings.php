@@ -2,6 +2,8 @@
 
 namespace App\Data\Repositories;
 
+use App\Data\Repositories\Team\TeamEloquentRepository;
+use App\Data\Repositories\Team\TeamRepository;
 use App\Data\Repositories\User\PermissionEloquentRepository;
 use App\Data\Repositories\User\PermissionRepository;
 use App\Data\Repositories\User\RoleEloquentRepository;
@@ -22,5 +24,6 @@ trait RepositoryBindings
         UserRepository::class       => UserEloquentRepository::class,
         RoleRepository::class       => RoleEloquentRepository::class,
         PermissionRepository::class => PermissionEloquentRepository::class,
+        TeamRepository::class       => TeamEloquentRepository::class,
     ];
 }

@@ -21,10 +21,10 @@ class CreateTeamsTable extends Migration
             DBTables::AUTH_TEAMS,
             function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('user_id')->index();
+                $table->foreignId('user_id')->index()->constrained(DBTables::AUTH_USERS);
                 $table->string('name');
                 $table->boolean('personal_team');
-                $table->timestamps();
+                commonMigration($table, true, true);
             }
         );
     }

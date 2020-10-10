@@ -2,7 +2,13 @@
 
 namespace App\StartUp\Providers;
 
-use App\Core\Actions\Auth\DeleteUser;
+use App\Core\Actions\Team\AddTeamMember;
+use App\Core\Actions\Team\CreateTeam;
+use App\Core\Actions\Team\DeleteTeam;
+use App\Core\Actions\Team\UpdateTeamName;
+use App\Core\Actions\User\DeleteUser;
+use App\Data\Models\Entities\Team;
+use App\Data\Models\Entities\TeamUser;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
 
@@ -19,7 +25,8 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Jetstream::useTeamModel(Team::class);
+        Jetstream::useMembershipModel(TeamUser::class);
     }
 
     /**
@@ -31,6 +38,10 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         $this->configurePermissions();
 
+        Jetstream::createTeamsUsing(CreateTeam::class);
+        Jetstream::updateTeamNamesUsing(UpdateTeamName::class);
+        Jetstream::addTeamMembersUsing(AddTeamMember::class);
+        Jetstream::deleteTeamsUsing(DeleteTeam::class);
         Jetstream::deleteUsersUsing(DeleteUser::class);
     }
 
@@ -43,13 +54,25 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         Jetstream::defaultApiTokenPermissions(['read']);
 
-        Jetstream::permissions(
+        Jetstream::role(
+            'admin',
+            __('Administrator'),
             [
                 'create',
                 'read',
                 'update',
                 'delete',
             ]
-        );
+        )->description(__('Administrator users can perform any action.'));
+
+        Jetstream::role(
+            'editor',
+            __('Editor'),
+            [
+                'read',
+                'create',
+                'update',
+            ]
+        )->description(__('Editor users have the ability to read, create, and update.'));
     }
 }

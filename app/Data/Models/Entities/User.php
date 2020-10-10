@@ -18,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -29,6 +30,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string      $name
  * @property string      $email
  * @property string      $username
+ * @property string      $password
  * @property Carbon|null $email_verified_at
  * @property string|null $profile_photo_path
  * @property object|null $metadata
@@ -39,6 +41,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string      $two_factor_recovery_codes
  *
  * @property Collection  $roles
+ * @property Collection  $owned_teams
  *
  * @property string      $display_name
  * @property Role|null   $primary_role
@@ -50,6 +53,7 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
+    use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;

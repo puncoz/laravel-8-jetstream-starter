@@ -12,8 +12,8 @@ use ReflectionException;
  */
 final class AuthRolesPermissions
 {
-    public const ROLE_ADMIN  = 'admin';
-    public const ROLE_STAFFS = 'staffs';
+    public const ROLE_ADMIN      = 'admin';
+    public const ROLE_DEVELOPERS = 'developers';
 
     /**
      * @return array

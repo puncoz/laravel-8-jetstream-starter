@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Core\Actions\Auth;
+namespace App\Core\Actions\User;
 
 use App\Core\Rules\PasswordValidationRules;
+use App\Data\Models\Entities\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 /**
  * Class UpdateUserPassword
- * @package App\Core\Actions\Auth
+ * @package App\Core\Actions\User
  */
 class UpdateUserPassword implements UpdatesUserPasswords
 {
@@ -18,7 +19,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
     /**
      * Validate and update the user's password.
      *
-     * @param mixed $user
+     * @param User  $user
      * @param array $input
      *
      * @return void
@@ -44,7 +45,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
 
         $user->forceFill(
             [
-                'password' => Hash::make($input['password']),
+                'password' => $input['password'],
             ]
         )->save();
     }

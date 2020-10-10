@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Core\Actions\Auth;
+namespace App\Core\Actions\User;
 
 use App\Constants\DBTables;
+use App\Data\Models\Entities\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -10,14 +11,14 @@ use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 /**
  * Class UpdateUserProfileInformation
- * @package App\Core\Actions\Auth
+ * @package App\Core\Actions\User
  */
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
     /**
      * Validate and update the given user's profile information.
      *
-     * @param mixed $user
+     * @param User  $user
      * @param array $input
      *
      * @return void
@@ -27,8 +28,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make(
             $input,
             [
-                'name' => ['required', 'string', 'max:255'],
-
+                'name'  => ['required', 'string', 'max:255'],
                 'email' => [
                     'required',
                     'string',
@@ -54,12 +54,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     /**
      * Update the given verified user's profile information.
      *
-     * @param mixed $user
+     * @param User  $user
      * @param array $input
      *
      * @return void
      */
-    protected function updateVerifiedUser($user, array $input)
+    protected function updateVerifiedUser(User $user, array $input)
     {
         $user->forceFill(
             [

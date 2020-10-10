@@ -3,11 +3,11 @@
 namespace App\StartUp\Providers;
 
 use App\Core\Actions\Auth\AttemptToAuthenticate;
-use App\Core\Actions\Auth\CreateNewUser;
 use App\Core\Actions\Auth\LogoutResponse;
 use App\Core\Actions\Auth\ResetUserPassword;
-use App\Core\Actions\Auth\UpdateUserPassword;
-use App\Core\Actions\Auth\UpdateUserProfileInformation;
+use App\Core\Actions\User\RegisterUser;
+use App\Core\Actions\User\UpdateUserPassword;
+use App\Core\Actions\User\UpdateUserProfileInformation;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\LogoutResponse as LogoutResponseContract;
@@ -37,7 +37,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Fortify::createUsersUsing(CreateNewUser::class);
+        Fortify::createUsersUsing(RegisterUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);

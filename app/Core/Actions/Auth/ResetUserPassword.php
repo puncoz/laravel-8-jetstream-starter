@@ -3,7 +3,7 @@
 namespace App\Core\Actions\Auth;
 
 use App\Core\Rules\PasswordValidationRules;
-use Illuminate\Support\Facades\Hash;
+use App\Data\Models\Entities\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\ResetsUserPasswords;
@@ -19,7 +19,7 @@ class ResetUserPassword implements ResetsUserPasswords
     /**
      * Validate and reset the user's forgotten password.
      *
-     * @param mixed $user
+     * @param User  $user
      * @param array $input
      *
      * @return void
@@ -36,7 +36,7 @@ class ResetUserPassword implements ResetsUserPasswords
 
         $user->forceFill(
             [
-                'password' => Hash::make($input['password']),
+                'password' => $input['password'],
             ]
         )->save();
     }

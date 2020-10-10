@@ -2,6 +2,8 @@
 
 namespace App\StartUp\Providers;
 
+use App\Core\Policies\TeamPolicy;
+use App\Data\Models\Entities\Team;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 /**
@@ -15,7 +17,9 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $policies = [];
+    protected $policies = [
+        Team::class => TeamPolicy::class,
+    ];
 
     /**
      * Register any authentication / authorization services.

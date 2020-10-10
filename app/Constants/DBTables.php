@@ -24,4 +24,5 @@ final class DBTables
     public const AUTH_PERSONAL_ACCESS_TOKENS = 'auth_personal_access_tokens';
     public const AUTH_TEAMS                  = 'auth_teams';
     public const AUTH_TEAMS_USERS            = 'auth_teams_users';
+    public const AUTH_TEAMS_MEMBERSHIP       = 'auth_teams_membership';
 }
