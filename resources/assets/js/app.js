@@ -1,6 +1,9 @@
 "use strict"
 
-import { InertiaApp }         from "@inertiajs/inertia-vue"
+import {
+    app as InertiaApp,
+    plugin as Inertia,
+}                             from "@inertiajs/inertia-vue"
 import { InertiaForm }        from "laravel-jetstream"
 import PortalVue              from "portal-vue"
 import Vue                    from "vue"
@@ -10,7 +13,7 @@ import ConfirmDialog          from "./Plugins/ConfirmDialog"
 
 Bootstrap()
 
-Vue.use(InertiaApp)
+Vue.use(Inertia)
 Vue.use(InertiaForm)
 Vue.use(PortalVue)
 Vue.use(ConfirmDialog, { closeOnBackdrop: false })

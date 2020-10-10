@@ -1,9 +1,18 @@
 <template>
-    <div>Dashboard</div>
+    <app-layout page-title="Dashboard">
+        <section-view>
+            Welcome to Dashboard
+        </section-view>
+    </app-layout>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
+    import SectionView from "../../Components/SectionView"
+    import AppLayout   from "../../Layouts/AppLayout"
+
     export default {
         name: "Dashboard",
+
+        components: { SectionView, AppLayout },
     }
 </script>
