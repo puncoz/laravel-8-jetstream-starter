@@ -34,8 +34,8 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
-        "@inertiajs/inertia": "^0.4.0",
-        "@inertiajs/inertia-vue": "^0.3.1",
+        "@inertiajs/inertia": "^0.3.4",
+        "@inertiajs/inertia-vue": "^0.2.4",
         "@inertiajs/progress": "^0.1.2",
         "@tailwindcss/ui": "^0.6.2",
         "axios": "^0.20.0",

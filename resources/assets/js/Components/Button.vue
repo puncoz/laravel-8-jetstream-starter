@@ -24,7 +24,7 @@
         computed: {
             classes: function() {
                 return `inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md
-                        font-semibold text-xs text-secondary uppercase tracking-widest hover:bg-primary-light
+                        font-semibold text-xs text-white uppercase tracking-widest hover:bg-primary-shades-400
                         active:bg-primary focus:outline-none focus:border-primary focus:shadow-outline-gray
                         transition ease-in-out duration-150`
             },

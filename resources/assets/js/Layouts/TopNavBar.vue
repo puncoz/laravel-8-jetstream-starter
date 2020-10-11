@@ -52,16 +52,16 @@
                 <div class="flex items-center px-4">
                     <div class="flex-shrink-0">
                         <img class="h-10 w-10 rounded-full"
-                             :src="$page.props.user.profile_photo_url"
-                             :alt="$page.props.user.name">
+                             :src="$page.user.profile_photo_url"
+                             :alt="$page.user.name">
                     </div>
 
                     <div class="ml-3">
                         <div class="font-medium text-base text-gray-800">
-                            {{ $page.props.user.name }}
+                            {{ $page.user.name }}
                         </div>
                         <div class="font-medium text-sm text-gray-500">
-                            {{ $page.props.user.email }}
+                            {{ $page.user.email }}
                         </div>
                     </div>
                 </div>
@@ -69,14 +69,14 @@
                 <div class="mt-3 space-y-1">
                     <nav-link :is-responsive="true"
                               :href="route('profile.show')"
-                              :active="$page.props.currentRouteName === 'profile.show'">
+                              :active="$page.currentRouteName === 'profile.show'">
                         Account Setting
                     </nav-link>
 
-                    <nav-link v-if="$page.props.jetstream.hasApiFeatures"
+                    <nav-link v-if="$page.jetstream.hasApiFeatures"
                               :is-responsive="true"
                               :href="route('api-tokens.index')"
-                              :active="$page.props.currentRouteName === 'api-tokens.index'">
+                              :active="$page.currentRouteName === 'api-tokens.index'">
                         API Tokens
                     </nav-link>
 
@@ -86,7 +86,7 @@
                     </nav-link>
 
                     <!-- Team Management -->
-                    <template v-if="$page.props.jetstream.hasTeamFeatures">
+                    <template v-if="$page.jetstream.hasTeamFeatures">
                         <div class="border-t border-gray-200"/>
 
                         <div class="block px-4 py-2 text-xs text-gray-400">
@@ -95,15 +95,15 @@
 
                         <!-- Team Settings -->
                         <nav-link :is-responsive="true"
-                                  :href="route('teams.show', $page.props.user.current_team)"
-                                  :active="$page.props.currentRouteName === 'teams.show'">
+                                  :href="route('teams.show', $page.user.current_team)"
+                                  :active="$page.currentRouteName === 'teams.show'">
                             Team Settings
                         </nav-link>
 
-                        <nav-link v-if="$page.props.jetstream.canCreateTeams"
+                        <nav-link v-if="$page.jetstream.canCreateTeams"
                                   :is-responsive="true"
                                   :href="route('teams.create')"
-                                  :active="$page.props.currentRouteName === 'teams.create'">
+                                  :active="$page.currentRouteName === 'teams.create'">
                             Create New Team
                         </nav-link>
 
@@ -114,11 +114,11 @@
                             Switch Teams
                         </div>
 
-                        <template v-for="team in $page.props.user.all_teams">
+                        <template v-for="team in $page.user.all_teams">
                             <form :key="team.id" @submit.prevent="switchToTeam(team)">
                                 <nav-link :is-responsive="true" as="button">
                                     <div class="flex items-center">
-                                        <svg v-if="team.id === $page.props.user.current_team_id"
+                                        <svg v-if="team.id === $page.user.current_team_id"
                                              class="mr-2 h-5 w-5 text-green-400"
                                              fill="none"
                                              stroke-linecap="round"
