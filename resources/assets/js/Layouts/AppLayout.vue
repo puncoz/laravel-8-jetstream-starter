@@ -14,7 +14,7 @@
         <main>
             <div class="py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="p-6 sm:px-20">
+                    <div :class="{'sm:px-20': !fullWidth}">
                         <slot/>
                     </div>
                 </div>
@@ -42,10 +42,11 @@
 
         props: {
             pageTitle: { type: String, required: true },
+            fullWidth: { type: Boolean, required: false, default: false },
         },
 
         beforeMount() {
-            document.title = `${this.pageTitle} | ${this.$page.props.app.name}`
+            document.title = `${this.pageTitle} | ${this.$page.app.name}`
         },
     }
 </script>

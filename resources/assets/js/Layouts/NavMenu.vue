@@ -3,14 +3,14 @@
         <nav-link :is-responsive="isResponsive"
                   :href="route('dashboard')"
                   class="flex"
-                  :active="$page.props.currentRouteName === 'dashboard'">
+                  :active="$page.currentRouteName === 'dashboard'">
             Dashboard
         </nav-link>
 
         <nav-link :is-responsive="isResponsive"
                   href="#"
                   class="flex"
-                  :active="$page.props.currentRouteName === 'profile'">
+                  :active="$page.currentRouteName === 'profile'">
             Profile
         </nav-link>
     </div>

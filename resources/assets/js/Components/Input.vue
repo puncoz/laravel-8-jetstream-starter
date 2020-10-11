@@ -10,7 +10,7 @@
         name: "InputComponent",
 
         props: {
-            value: { type: [Number, String], required: true, default: null },
+            value: { type: [Number, String], required: false, default: null },
         },
 
         methods: {

@@ -28,24 +28,25 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make(
             $input,
             [
-                'name'  => ['required', 'string', 'max:255'],
-                'email' => [
-                    'required',
-                    'string',
-                    'email',
-                    'max:255',
-                    Rule::unique(DBTables::AUTH_USERS)->ignore($user->id),
-                ],
+                'name'     => ['required', 'string', 'max:255'],
+                'username' => ['required', 'string', 'max:255', Rule::unique(DBTables::AUTH_USERS)->ignore($user->id),],
+                'email'    => ['required', 'email', 'max:255', Rule::unique(DBTables::AUTH_USERS)->ignore($user->id),],
+                'photo'    => ['nullable', 'image', 'max:1024'],
             ]
         )->validateWithBag('updateProfileInformation');
+
+        if (isset($input['photo'])) {
+            $user->updateProfilePhoto($input['photo']);
+        }
 
         if ( $input['email'] !== $user->email && $user instanceof MustVerifyEmail ) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill(
                 [
-                    'name'  => $input['name'],
-                    'email' => $input['email'],
+                    'name'     => $input['name'],
+                    'email'    => $input['email'],
+                    'username' => $input['username'],
                 ]
             )->save();
         }

@@ -3,19 +3,19 @@
         <div class="ml-3 relative">
             <drop-down-menu align="right" width="48">
                 <template #trigger>
-                    <button v-if="$page.props.jetstream.managesProfilePhotos"
+                    <button v-if="$page.jetstream.managesProfilePhotos"
                             class="flex text-sm border-2 border-transparent rounded-full focus:outline-none
                             focus:border-gray-300 transition duration-150 ease-in-out">
                         <img class="h-8 w-8 rounded-full object-cover"
-                             :src="$page.props.user.profile_photo_url"
-                             :alt="$page.props.user.name">
+                             :src="$page.user.profile_photo_url"
+                             :alt="$page.user.name">
                     </button>
 
                     <button v-else
                             class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700
                                     hover:border-gray-300 focus:outline-none focus:text-gray-700
                                     focus:border-gray-300 transition duration-150 ease-in-out">
-                        <span>{{ $page.props.user.name }}</span>
+                        <span>{{ $page.user.name }}</span>
 
                         <span class="ml-1">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -37,24 +37,24 @@
                         Account Setting
                     </drop-down-link>
 
-                    <drop-down-link v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
+                    <drop-down-link v-if="$page.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
                         API Tokens
                     </drop-down-link>
 
                     <div class="border-t border-gray-100"/>
 
                     <!-- Team Management -->
-                    <template v-if="$page.props.jetstream.hasTeamFeatures">
+                    <template v-if="$page.jetstream.hasTeamFeatures">
                         <div class="block px-4 py-2 text-xs text-gray-400">
                             Manage Team
                         </div>
 
                         <!-- Team Settings -->
-                        <drop-down-link :href="route('teams.show', $page.props.user.current_team)">
+                        <drop-down-link :href="route('teams.show', $page.user.current_team)">
                             Team Settings
                         </drop-down-link>
 
-                        <drop-down-link v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')">
+                        <drop-down-link v-if="$page.jetstream.canCreateTeams" :href="route('teams.create')">
                             Create New Team
                         </drop-down-link>
 
@@ -65,12 +65,12 @@
                             Switch Teams
                         </div>
 
-                        <template v-for="(team, teamIdx) in $page.props.user.all_teams">
+                        <template v-for="(team, teamIdx) in $page.user.all_teams">
                             <form :key="teamIdx" @submit.prevent="switchToTeam(team)">
                                 <drop-down-link as="button">
                                     <div class="flex items-center">
-                                        <svg v-if="team.id === $page.props.user.current_team_id"
-                                             class="mr-2 h-5 w-5 text-green-400"
+                                        <svg v-if="team.id === $page.user.current_team_id"
+                                             class="mr-2 h-5 w-5 text-success-400"
                                              fill="none"
                                              stroke-linecap="round"
                                              stroke-linejoin="round"
