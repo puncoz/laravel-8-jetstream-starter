@@ -19,7 +19,7 @@
                     </div>
 
                     <div v-if="hasActions"
-                         class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
+                         class="flex items-center justify-end px-4 py-3 bg-gray-300 text-right sm:px-6">
                         <slot name="actions"/>
                     </div>
                 </div>
