@@ -13,7 +13,7 @@ trait Loggable
     /**
      * Boot method for creating, updating and deleting models.
      */
-    public static function bootModelTrait()
+    public static function bootLoggable()
     {
         static::created(
             function ($model) {
