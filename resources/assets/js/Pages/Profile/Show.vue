@@ -20,6 +20,10 @@
                 <section-border/>
 
                 <logout-other-browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0"/>
+
+                <section-border/>
+
+                <delete-user-form class="mt-10 sm:mt-0"/>
             </div>
         </div>
     </app-layout>
@@ -28,6 +32,7 @@
 <script>
     import SectionBorder                  from "./../../Components/SectionBorder"
     import AppLayout                      from "./../../Layouts/AppLayout"
+    import DeleteUserForm                 from "./Partials/DeleteUserForm"
     import LogoutOtherBrowserSessionsForm from "./Partials/LogoutOtherBrowserSessionsForm"
     import TwoFactorAuthenticationForm    from "./Partials/TwoFactorAuthenticationForm"
     import UpdatePasswordForm             from "./Partials/UpdatePasswordForm"
@@ -37,6 +42,7 @@
         name: "ProfileSettings",
 
         components: {
+            DeleteUserForm,
             UpdateProfileInformationForm,
             AppLayout,
             SectionBorder,
