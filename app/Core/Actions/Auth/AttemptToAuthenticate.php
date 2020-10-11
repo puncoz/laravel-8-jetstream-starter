@@ -4,7 +4,7 @@ namespace App\Core\Actions\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use Laravel\Fortify\Actions\AttemptToAuthenticate as BaseAttemptToAuthenticate;
+use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable as BaseAttemptToAuthenticate;
 
 /**
  * Class AttemptToAuthenticate
