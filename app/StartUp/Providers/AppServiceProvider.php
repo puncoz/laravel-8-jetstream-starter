@@ -2,9 +2,11 @@
 
 namespace App\StartUp\Providers;
 
+use App\Data\Models\Entities\UserPersonalAccessToken;
 use App\Domain\Admin\View\AuthLayout;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Sanctum\Sanctum;
 
 /**
  * Class AppServiceProvider
@@ -47,5 +49,7 @@ class AppServiceProvider extends ServiceProvider
                 return app()->environment($environment);
             }
         );
+
+        Sanctum::usePersonalAccessTokenModel(UserPersonalAccessToken::class);
     }
 }
